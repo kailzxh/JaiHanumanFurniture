@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",  // Use the new JSX transform (React 17+)
+    "target": "ES2022",  // Use the latest JavaScript version
+    "lib": ["ES2023", "DOM"],  // Include browser environment
+    "module": "ESNext",  // Use ES module syntax
+    "skipLibCheck": true,  // Skip checking libraries for faster builds
+
+    /* Bundler mode for Vite */
+    "moduleResolution": "bundler",  // Use bundler mode for Vite
+    "allowImportingTsExtensions": true,  // Allow TypeScript extensions in imports
+    "isolatedModules": true,  // Ensure each file is treated as a module
+    "moduleDetection": "force",  // Force module detection
+    "noEmit": true,  // Don't emit output, Vite handles this
+
+    /* Strict linting settings */
+    "strict": true,  // Enable all strict type-checking options
+    "noUnusedLocals": true,  // Error on unused local variables
+    "noUnusedParameters": true,  // Error on unused function parameters
+    "noFallthroughCasesInSwitch": true  // Prevent fall-through in switch statements
+  },
+  "include": ["src/**/*", "vite.config.ts"],  // Include source and Vite config files
+  "exclude": ["node_modules"]  // Exclude node_modules
+}
