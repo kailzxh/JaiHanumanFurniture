@@ -139,7 +139,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             className="w-full h-full object-cover"
-            src="../public/images/maincoursal.avif"
+            src="../images/maincoursal.jpg"
             alt="Modern living room"
           />
           <div className="absolute inset-0 bg-black opacity-50" />
