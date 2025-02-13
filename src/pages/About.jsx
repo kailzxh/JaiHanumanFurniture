@@ -32,7 +32,7 @@ export default function About() {
         <div className="absolute inset-0">
           <img
             className="w-full h-full object-cover"
-            src="/images/about.avif"
+            src="/images/about.jpg"
             alt="Craftsman working"
           />
           <div className="absolute inset-0 bg-black opacity-75"></div>

@@ -139,7 +139,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             className="w-full h-full object-cover"
-            src="../images/maincoursal.avif"
+            src="../public/images/maincoursal.avif"
             alt="Modern living room"
           />
           <div className="absolute inset-0 bg-black opacity-50" />
@@ -201,7 +201,7 @@ export default function Home() {
             <Feature
               Icon={Truck}
               title="Free Shipping"
-              description="Free delivery on all orders over $1000"
+              description="Free delivery on all orders"
             />
             <Feature
               Icon={Shield}
@@ -231,21 +231,21 @@ export default function Home() {
         <Link to="/products/Living Room" >
           <FeaturedCategory
             title="Living Room"
-            image="/images/livingrooms.avif"
+            image="/images/livingrooms.jpg"
             delay={0.2}
           />
           </Link>
           <Link to="/products/bedroom" >
           <FeaturedCategory
             title="Bedroom"
-            image="/images/bedroom.avif"
+            image="/images/bedroom.jpg"
             delay={0.4}
           />
           </Link>
           <Link to="/products/kitchen" >
           <FeaturedCategory
             title="Kitchen"
-            image="/images/Kitchen.webp"
+            image="/images/Kitchen.jpg"
             delay={0.6}
           />
           </Link>
