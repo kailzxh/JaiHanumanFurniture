@@ -223,3 +223,190 @@ export default function SignUp() {
     </div>
   );
 }
+
+
+// import React, { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { toast } from "react-hot-toast";
+// import { supabase } from "../lib/supabase";
+
+// export default function SignUp() {
+//   const [email, setEmail] = useState("");
+//   const [phone, setPhone] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [confirmPassword, setConfirmPassword] = useState("");
+//   const [otp, setOtp] = useState("");
+//   const [isOtpSent, setIsOtpSent] = useState(false);
+//   const [loading, setLoading] = useState(false);
+//   const navigate = useNavigate();
+
+//   // ✅ Step 1: Send OTP for email verification
+//   const handleSendOTP = async (e) => {
+//     e.preventDefault();
+
+//     if (password !== confirmPassword) {
+//       return toast.error("Passwords do not match");
+//     }
+
+//     try {
+//       setLoading(true);
+
+//       // Send OTP (Supabase automatically creates users on verification)
+//       const { error } = await supabase.auth.signUp({
+//         email,
+//         password,
+//       });
+
+//       if (error) throw new Error(error.message);
+
+//       setIsOtpSent(true);
+//       toast.success("OTP sent! Please check your email.");
+//     } catch (error) {
+//       toast.error(error.message || "Failed to send OTP");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   // ✅ Step 2: Verify OTP & Store Additional Data
+//   const handleVerifyOTP = async () => {
+//     try {
+//       setLoading(true);
+
+//       // Verify OTP
+//       const { data, error } = await supabase.auth.verifyOtp({
+//         email,
+//         token: otp,
+//         type: "signup",
+//       });
+
+//       if (error) throw new Error(error.message);
+
+//       toast.success("OTP verified successfully!");
+      
+//       // ✅ Step 3: Fetch user ID
+//       const { data: userData, error: userError } = await supabase.auth.getUser();
+//       if (userError) throw new Error(userError.message);
+
+//       const userId = userData.user?.id;
+//       if (!userId) throw new Error("User ID not found after verification.");
+
+//       // ✅ Step 4: Insert user profile into `profiles` table
+//       const { error: profileError } = await supabase
+//         .from("profiles")
+//         .insert([{ id: userId, email, phone }]);
+
+//       if (profileError) throw new Error(profileError.message);
+
+//       navigate("/");
+//     } catch (error) {
+//       toast.error(error.message || "Failed to verify OTP and create account");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+//       <div className="max-w-md w-full space-y-8">
+//         <div>
+//           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+//             Create your account
+//           </h2>
+//           <p className="mt-2 text-center text-sm text-gray-600">
+//             Or{" "}
+//             <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+//               sign in to your existing account
+//             </Link>
+//           </p>
+//         </div>
+
+//         {!isOtpSent ? (
+//           /* Step 1: Request OTP */
+//           <form className="mt-8 space-y-6" onSubmit={handleSendOTP}>
+//             <div className="rounded-md shadow-sm -space-y-px">
+//               <div>
+//                 <label htmlFor="email" className="sr-only">Email address</label>
+//                 <input
+//                   id="email"
+//                   name="email"
+//                   type="email"
+//                   autoComplete="email"
+//                   required
+//                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                   placeholder="Email address"
+//                   value={email}
+//                   onChange={(e) => setEmail(e.target.value)}
+//                 />
+//               </div>
+//               <div>
+//                 <label htmlFor="phone" className="sr-only">Phone number</label>
+//                 <input
+//                   id="phone"
+//                   name="phone"
+//                   type="tel"
+//                   required
+//                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                   placeholder="Phone number"
+//                   value={phone}
+//                   onChange={(e) => setPhone(e.target.value)}
+//                 />
+//               </div>
+//               <div>
+//                 <label htmlFor="password" className="sr-only">Password</label>
+//                 <input
+//                   id="password"
+//                   name="password"
+//                   type="password"
+//                   autoComplete="new-password"
+//                   required
+//                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                   placeholder="Password"
+//                   value={password}
+//                   onChange={(e) => setPassword(e.target.value)}
+//                 />
+//               </div>
+//               <div>
+//                 <label htmlFor="confirm-password" className="sr-only">Confirm Password</label>
+//                 <input
+//                   id="confirm-password"
+//                   name="confirm-password"
+//                   type="password"
+//                   autoComplete="new-password"
+//                   required
+//                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                   placeholder="Confirm Password"
+//                   value={confirmPassword}
+//                   onChange={(e) => setConfirmPassword(e.target.value)}
+//                 />
+//               </div>
+//             </div>
+
+//             <button
+//               type="submit"
+//               disabled={loading}
+//               className="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700"
+//             >
+//               {loading ? "Sending OTP..." : "Send OTP"}
+//             </button>
+//           </form>
+//         ) : (
+//           /* Step 2: Verify OTP */
+//           <div className="mt-8">
+//             <p className="text-center text-sm text-gray-600">Enter the OTP sent to your email.</p>
+//             <input
+//               type="text"
+//               placeholder="Enter OTP"
+//               value={otp}
+//               onChange={(e) => setOtp(e.target.value)}
+//               className="border p-2 w-full mb-4"
+//             />
+//             <button onClick={handleVerifyOTP} className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">
+//               Verify OTP
+//             </button>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }

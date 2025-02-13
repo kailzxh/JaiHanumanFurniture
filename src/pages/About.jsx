@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PenTool as Tool, Users, Heart } from 'lucide-react';
-import { supabase } from '../lib/supabase'; // Import your supabase client
+import { supabase } from '../lib/supabase'; 
+import Footer from '../components/Footer';// Import your supabase client
 
 export default function About() {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -31,7 +32,7 @@ export default function About() {
         <div className="absolute inset-0">
           <img
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1581428982868-e410dd047a90?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80"
+            src="/images/about.avif"
             alt="Craftsman working"
           />
           <div className="absolute inset-0 bg-black opacity-75"></div>
@@ -145,6 +146,9 @@ export default function About() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
+
+      

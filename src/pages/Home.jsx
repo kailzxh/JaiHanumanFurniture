@@ -139,7 +139,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80"
+            src="../public/images/maincoursal.avif"
             alt="Modern living room"
           />
           <div className="absolute inset-0 bg-black opacity-50" />
@@ -231,21 +231,21 @@ export default function Home() {
         <Link to="/products/Living Room" >
           <FeaturedCategory
             title="Living Room"
-            image="https://images.unsplash.com/photo-1567016432779-094069958ea5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            image="/images/livingrooms.avif"
             delay={0.2}
           />
           </Link>
           <Link to="/products/bedroom" >
           <FeaturedCategory
             title="Bedroom"
-            image="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            image="/images/bedroom.avif"
             delay={0.4}
           />
           </Link>
           <Link to="/products/kitchen" >
           <FeaturedCategory
             title="Kitchen"
-            image="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            image="/images/Kitchen.webp"
             delay={0.6}
           />
           </Link>

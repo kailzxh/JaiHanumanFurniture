@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => (
       <div className="text-sm text-gray-500 mb-1">{product.category}</div>
       <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
       <div className="flex items-center justify-between">
-        <span className="text-xl font-bold">${product.price}</span>
+        <span className="text-xl font-bold">₹{product.price}</span>
         <NavLink to="/#Get_Quote" className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-200">
           Order Now
         </NavLink>
