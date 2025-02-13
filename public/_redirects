@@ -1,0 +1,3 @@
+/about    /new-about    301
+/old-page /new-page     301
+/*    /index.html   200
