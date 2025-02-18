@@ -337,77 +337,54 @@ function Gallery() {
 
       {/* Media Viewer Modal */}
       {selectedItem && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
+  <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
+    <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
+      <button
+        onClick={() => setSelectedItem(null)}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+      >
+        <X className="w-6 h-6" />
+      </button>
+
+      <div className="relative flex items-center justify-center bg-gray-200 p-4">
+        {selectedItem.media[mediaIndex].endsWith('.mp4') ? (
+          <video controls className="w-full max-h-[80vh] rounded-lg">
+            <source src={selectedItem.media[mediaIndex]} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={selectedItem.media[mediaIndex]}
+            alt={selectedItem.title}
+            className="w-auto max-h-[80vh] object-contain bg-gray-200 rounded-lg"
+          />
+        )}
+
+        {selectedItem.media.length > 1 && (
+          <>
             <button
-              onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+              onClick={() => navigateMedia('prev')}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white"
             >
-              <X className="w-6 h-6" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
+            <button
+              onClick={() => navigateMedia('next')}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </>
+        )}
+      </div>
 
-            <div className="relative">
-              {selectedItem.media[mediaIndex].endsWith('.mp4') ? (
-                <video controls className="w-full rounded-lg">
-                  <source src={selectedItem.media[mediaIndex]} type="video/mp4" />
-                </video>
-              ) : (
-                <img
-                  src={selectedItem.media[mediaIndex]}
-                  alt={selectedItem.title}
-                  className="w-full h-auto rounded-lg"
-                />
-              )}
+      <div className="p-6">
+        <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
+        <p className="mt-2 text-gray-700">{selectedItem.description}</p>
+      </div>
+    </div>
+  </div>
+)}
 
-              {/* Media Navigation */}
-              {selectedItem.media.length > 1 && (
-                <>
-                  <button
-                    onClick={() => navigateMedia('prev')}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button
-                    onClick={() => navigateMedia('next')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
-              )}
-
-              {/* Media Counter */}
-              {selectedItem.media.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                  {mediaIndex + 1} / {selectedItem.media.length}
-                </div>
-              )}
-            </div>
-
-            <div className="p-6">
-              <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
-              <p className="mt-2 text-gray-700">{selectedItem.description}</p>
-            </div>
-
-            {/* Gallery Navigation */}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
-              <button
-                onClick={() => navigateGallery('prev')}
-                className="bg-white/80 p-2 rounded-full hover:bg-white"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={() => navigateGallery('next')}
-                className="bg-white/80 p-2 rounded-full hover:bg-white"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
