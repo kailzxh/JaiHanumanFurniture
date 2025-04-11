@@ -1,0 +1,15 @@
+# .github/workflows/keep-alive.yml
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 0 * * 0,3'  # Runs every Sunday and Wednesday at midnight UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping keep-alive endpoint
+        run: curl -sSf https://jaihanumanfurniture.com/api/keep-alive
