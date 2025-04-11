@@ -1,10 +1,9 @@
-# .github/workflows/keep-alive.yml
 name: Keep Supabase Alive
 
 on:
   schedule:
-    - cron: '0 0 * * 0,3'  # Runs every Sunday and Wednesday at midnight UTC
-  workflow_dispatch:        # Allow manual trigger from GitHub Actions UI
+    - cron: '0 0 * * 0,3'  # Every Sunday and Wednesday at midnight UTC
+  workflow_dispatch:        # Allow manual trigger
 
 jobs:
   ping:
@@ -12,4 +11,6 @@ jobs:
 
     steps:
       - name: Ping keep-alive endpoint
-        run: curl -sSf https://jaihanumanfurniture.netlify.app/.netlify/functions/keep-alive
+        run: |
+          echo "Pinging https://jaihanumanfurniture.netlify.app/.netlify/functions/keep-alive"
+          curl -v --fail https://jaihanumanfurniture.netlify.app/.netlify/functions/keep-alive
