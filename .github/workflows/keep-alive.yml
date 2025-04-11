@@ -12,4 +12,4 @@ jobs:
 
     steps:
       - name: Ping keep-alive endpoint
-        run: curl -sSf https://jaihanumanfurniture.com/api/keep-alive
+        run: curl -sSf https://jaihanumanfurniture.netlify.app/.netlify/functions/keep-alive
