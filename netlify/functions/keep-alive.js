@@ -1,6 +1,12 @@
 // netlify/functions/keep-alive.js
 
-const { supabase } = require('../../src/lib/supabase'); // adjust path as needed
+const { createClient } = require('@supabase/supabase-js');
+
+const supabase = createClient(
+  process.env.VITE_SUPABASE_URL,
+  process.env.VITE_SUPABASE_ANON_KEY
+);
+
 
 exports.handler = async function (event, context) {
   const { data, error } = await supabase.from('profiles').select('id').limit(1);
